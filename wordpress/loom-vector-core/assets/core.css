@@ -1,0 +1,134 @@
+/* Loom Vector Core — fallback styles used only when the Loom Vector theme is not active. */
+
+.lv-form {
+	max-width: 40rem;
+	font: inherit;
+}
+
+.lv-form__row {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.lv-field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	margin: 0 0 1rem;
+}
+
+.lv-field label {
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 0.01em;
+}
+
+.lv-field input,
+.lv-field select,
+.lv-field textarea {
+	width: 100%;
+	padding: 0.7rem 0.8rem;
+	border: 1px solid rgba(16, 18, 17, 0.2);
+	border-radius: 4px;
+	background: #fff;
+	font: inherit;
+	color: inherit;
+}
+
+.lv-field input:focus-visible,
+.lv-field select:focus-visible,
+.lv-field textarea:focus-visible {
+	outline: 2px solid #1f6f5c;
+	outline-offset: 2px;
+}
+
+.lv-form__hp {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.lv-form__notice {
+	padding: 0.85rem 1rem;
+	border-radius: 4px;
+	margin-bottom: 1.25rem;
+	font-size: 0.95rem;
+}
+
+.lv-form__notice--ok {
+	background: rgba(31, 111, 92, 0.1);
+	border: 1px solid rgba(31, 111, 92, 0.35);
+}
+
+.lv-form__notice--error {
+	background: rgba(176, 58, 46, 0.08);
+	border: 1px solid rgba(176, 58, 46, 0.35);
+}
+
+.lv-btn {
+	display: inline-block;
+	padding: 0.8rem 1.4rem;
+	border: 0;
+	border-radius: 999px;
+	background: #101211;
+	color: #fff;
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.lv-btn:hover {
+	background: #1f6f5c;
+}
+
+.lv-grid {
+	display: grid;
+	gap: 1.5rem;
+}
+
+.lv-grid--3 {
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.lv-card,
+.lv-quote {
+	padding: 1.5rem;
+	border: 1px solid rgba(16, 18, 17, 0.12);
+	border-radius: 6px;
+	background: #fff;
+	margin: 0;
+}
+
+.lv-quote__cite {
+	display: flex;
+	flex-direction: column;
+	font-size: 0.9rem;
+	opacity: 0.75;
+}
+
+.lv-faq__item {
+	border-bottom: 1px solid rgba(16, 18, 17, 0.12);
+	padding: 0.9rem 0;
+}
+
+.lv-faq__q {
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.lv-cta {
+	padding: 2.5rem 0;
+}
+
+.lv-cta__inner {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+	align-items: center;
+	justify-content: space-between;
+}
