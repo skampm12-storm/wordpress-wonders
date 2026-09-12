@@ -204,6 +204,33 @@ function lv_core_leads_screen() {
 }
 
 /**
+ * Neutralize CSV/formula injection for a single value before it is written
+ * with fputcsv(). Spreadsheet apps (Excel, Google Sheets, LibreOffice) will
+ * evaluate a cell as a formula if it begins with =, +, -, @, or certain
+ * control characters (tab, CR). Prefixing such values with a single quote
+ * forces them to be treated as plain text, per the OWASP CSV Injection
+ * mitigation, without altering the visible value for benign input.
+ *
+ * @param mixed $value Raw lead field value.
+ * @return string Sanitized value safe to pass to fputcsv().
+ */
+function lv_core_csv_safe( $value ) {
+	$value = (string) $value;
+
+	if ( '' === $value ) {
+		return $value;
+	}
+
+	$first_byte = $value[0];
+
+	if ( "\t" === $first_byte || "\r" === $first_byte || in_array( $first_byte, array( '=', '+', '-', '@' ), true ) ) {
+		return "'" . $value;
+	}
+
+	return $value;
+}
+
+/**
  * CSV export.
  */
 function lv_core_export_leads() {
@@ -225,7 +252,7 @@ function lv_core_export_leads() {
 	foreach ( $leads as $lead ) {
 		$row = array();
 		foreach ( $columns as $column ) {
-			$row[] = isset( $lead[ $column ] ) ? $lead[ $column ] : '';
+			$row[] = lv_core_csv_safe( isset( $lead[ $column ] ) ? $lead[ $column ] : '' );
 		}
 		fputcsv( $out, $row );
 	}
